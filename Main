@@ -1,0 +1,126 @@
+package Cryptography;
+import java.util.Scanner;
+
+public class Main {
+public static void main(String []args) {
+	
+	    Scanner scanner = new Scanner(System.in);
+	    boolean running = true;
+
+	    while (running) {
+	        System.out.println("-------------------------");
+	        System.out.println(" Caesar Cipher System");
+	        System.out.println("1- Encryption");
+	        System.out.println("2- Decryption");
+	        System.out.println("3- Cryptanalysis");
+	        System.out.println("4- Exit");
+	        System.out.print("Select your choice: ");
+
+	        String choice = scanner.nextLine().trim();
+
+	        switch (choice) {
+
+	            case "1":
+	                System.out.print("Enter a  plaintext: ");
+	                String Ptext = scanner.nextLine();
+
+	                if (Ptext.isEmpty()) {
+	                    System.out.println("Error, it's an empty text ");
+	                    break;
+	                }
+
+	                int encKey = readKey(scanner);
+
+	                String encrypted =
+	                		CaesarEncryption.encrypt(Ptext, encKey);
+
+	                System.out.println("Ciphertext: " + encrypted);
+	                break;
+
+	            case "2":
+	                System.out.print("Enter ciphertext: ");
+	                String ciphtext = scanner.nextLine();
+
+	                if (ciphtext.isEmpty()) {
+	                    System.out.println("Error, it's an empty text ");
+	                    break;
+	                }
+
+	                int decKey = readKey(scanner);
+
+	                String decrypted =
+	                    Decryption.decrypt(ciphtext, decKey);
+
+	                System.out.println("Plaintext: " + decrypted);
+	                break;
+
+	            case "3":
+	                System.out.print("Enter known plaintext: ");
+	                String knPlaint = scanner.nextLine();
+
+	                System.out.print("Enter corresponding ciphertext: ");
+	                String knCiphert = scanner.nextLine();
+
+	                if (knPlaint.isEmpty() ||
+	                    knCiphert.isEmpty()) {
+	                    System.out.println("Error, it's an empty text ");
+	                    break;
+	                }
+
+	                int recKey =
+	                    Cryptanalysis.knownPlaintextAttack(
+	                        knPlaint, knCiphert
+	                    );
+
+	                if (recKey == -1) {
+	                    System.out.println(
+	                        "could not recover a key"
+	                    );
+	                } else {
+	                    System.out.println(
+	                        "Recovered Key: " + recKey
+	                    );
+	                }
+	                break;
+
+	            case "4":
+	                System.out.println("Exit !");
+	                running = false;
+	                break;
+
+	            default:
+	                System.out.println(
+	                    "Invalid choice, try again from 1-4"
+	                );
+	        }
+	    }
+
+	    scanner.close();
+	}
+
+	public static int readKey(Scanner scanner) {
+	    while (true) {
+	        System.out.print("Enter key from 0-25 : ");
+	        String input = scanner.nextLine().trim();
+
+	        try {
+	            int k = Integer.parseInt(input);
+
+	            if (k >= 0 && k <= 25) {
+	                return k;
+	            }
+
+	            System.out.println(
+	                "Invalid key,  please try a number from 0-25"
+	            );
+
+	        } catch (NumberFormatException e) {
+	            System.out.println(
+	                "Invalid input, Please try to enter an integer"
+	            );
+	        }
+	    }
+	}
+	
+
+}
