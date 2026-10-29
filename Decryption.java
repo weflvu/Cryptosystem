@@ -1,7 +1,7 @@
 public class Decryption {
 
     public static String decrypt(String ciphertext, int key) {
-        // Convert the key to an equivalent shift between 0 and 25
+        // Keep the shift within the range 0–25
         int shift = Math.floorMod(key, 26);
         // Build the decrypted message one character at a time
         StringBuilder plaintext = new StringBuilder();
