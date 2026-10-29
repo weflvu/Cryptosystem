@@ -67,20 +67,15 @@ public static void main(String []args) {
 	                    break;
 	                }
 
-	                int recKey =
-	                    Cryptanalysis.knownPlaintextAttack(
-	                        knPlaint, knCiphert
-	                    );
+	                Integer recKey = Cryptanalysis.knownPlaintextAttack(
+    knPlaint, knCiphert
+);
 
-	                if (recKey == -1) {
-	                    System.out.println(
-	                        "could not recover a key"
-	                    );
-	                } else {
-	                    System.out.println(
-	                        "Recovered Key: " + recKey
-	                    );
-	                }
+if (recKey == null) {
+    System.out.println("Could not recover a key");
+} else {
+    System.out.println("Recovered Key: " + recKey);
+}
 	                break;
 
 	            case "4":
