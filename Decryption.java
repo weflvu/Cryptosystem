@@ -14,21 +14,21 @@ public class Decryption {
             // Check if the character is an uppercase english letter
             if (letter >= 'A' && letter <= 'Z') {
                 
-                 // Convert to 0–25, subtract the shift, wrap, and convert back.
-                // Adding 26 prevents a negative remainder.
+                 // Convert to 0–25, subtract the shift, wrap, and convert back
+                // Adding 26 prevents a negative remainder
                 letter = (char) ('A' + (letter - 'A' - shift + 26) % 26);
             }
           
-             // Check if the character is a lowercase English letter.
+             // Check if the character is a lowercase English letter
             else if (letter >= 'a' && letter <= 'z') {
                 letter = (char) ('a' + (letter - 'a' - shift + 26) % 26);
             }
 
-            // Keep spaces, numbers, and punctuation unchanged.
+            // Keep spaces, numbers, and punctuation unchanged
             plaintext.append(letter);
         }
 
-        // Convert the completed message to a String and return it.
+        // Convert the completed message to a String and return it
         return plaintext.toString();
     }
 }
