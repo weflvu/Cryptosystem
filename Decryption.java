@@ -25,7 +25,7 @@ public class Decryption {
                 letter = (char) ('a' + (letter - 'a' - shift + 26) % 26);
             }
 
-            // add character to the resukt and keep spaces, numbers, and punctuation unchanged
+            // add character to the result and keep spaces, numbers, and punctuation unchanged
             plaintext.append(letter);
         }
 
