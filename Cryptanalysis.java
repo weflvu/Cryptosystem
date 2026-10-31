@@ -41,5 +41,5 @@ public class Cryptanalysis {
 
         return key;
     }
-
+}
     
